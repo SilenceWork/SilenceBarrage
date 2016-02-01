@@ -9,6 +9,12 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.silencework.silencebarrage.model.BottomToTopBarrage;
+import com.silencework.silencebarrage.model.RightToLeftBarrage;
+import com.silencework.silencebarrage.model.TopToBottomBarrage;
+import com.silencework.silencebarrage.utility.TimeLine;
+import com.silencework.silencebarrage.view.BarrageView;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -44,6 +50,27 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            BarrageView barrageView = (BarrageView) findViewById(R.id.barrage_view);
+            barrageView.start();
+            RightToLeftBarrage barrage = new RightToLeftBarrage();
+            barrage.setText("我是弹幕君，哈哈哈哈哈哈");
+            barrage.setTextSize(50.0f);
+            barrage.setColor(getResources().getColor(R.color.colorPrimary));
+            barrage.setStartShowTime(TimeLine.getCurrentTimeMillis() + 3000);
+            barrageView.addBarrage(barrage);
+
+            TopToBottomBarrage topToBottomBarrage = new TopToBottomBarrage();
+            topToBottomBarrage.setTextSize(50.0f);
+            topToBottomBarrage.setColor(getResources().getColor(R.color.colorPrimary));
+            topToBottomBarrage.setStartShowTime(TimeLine.getCurrentTimeMillis() + 3000);
+            barrageView.addBarrage(topToBottomBarrage);
+
+//            BottomToTopBarrage bottomToTopBarrage = new BottomToTopBarrage();
+//            bottomToTopBarrage.setTextSize(50.0f);
+//            bottomToTopBarrage.setColor(getResources().getColor(R.color.colorPrimary));
+//            bottomToTopBarrage.setStartShowTime(TimeLine.getCurrentTimeMillis() + 3000);
+//            barrageView.addBarrage(bottomToTopBarrage);
+
             return true;
         }
 
